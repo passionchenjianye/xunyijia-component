@@ -1,4 +1,5 @@
 {
   "name": "xunyijia-components",
-  "description": "0.0.1"
+  "description": "0.0.1",
+  "main": "src/utils/tool.js"
 }

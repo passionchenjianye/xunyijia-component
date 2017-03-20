@@ -1,12 +1,81 @@
 {
-  "name": "xunyijia-components",
-  "description": "0.0.1",
-  "main": "src/utils/tool.js",
-  "repository": {
-      "type": "git",
-      "url": "https://github.com/xunyijia/xunyijia-component"
+  "_args": [
+    [
+      {
+        "raw": "xunyijia-components",
+        "scope": null,
+        "escapedName": "xunyijia-components",
+        "name": "xunyijia-components",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/macbook/Documents/smartsport-student-frontend-app"
+    ]
+  ],
+  "_from": "xunyijia-components@latest",
+  "_id": "xunyijia-components@0.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/xunyijia-components",
+  "_nodeVersion": "6.3.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/xunyijia-components-0.0.1.tgz_1489840801369_0.6209174399264157"
   },
+  "_npmUser": {
+    "name": "laozhao",
+    "email": "844657534@qq.com"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "xunyijia-components",
+    "scope": null,
+    "escapedName": "xunyijia-components",
+    "name": "xunyijia-components",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/xunyijia-components/-/xunyijia-components-0.0.1.tgz",
+  "_shasum": "c00c7ff8b8ece5ca1a4b2efd0798806e4dd5798e",
+  "_shrinkwrap": null,
+  "_spec": "xunyijia-components",
+  "_where": "/Users/macbook/Documents/smartsport-student-frontend-app",
+  "bugs": {
+    "url": "https://github.com/xunyijia/xunyijia-component/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "c00c7ff8b8ece5ca1a4b2efd0798806e4dd5798e",
+    "tarball": "https://registry.npmjs.org/xunyijia-components/-/xunyijia-components-0.0.1.tgz"
+  },
+  "gitHead": "4cdeadefe8b915b1d295bffc6a990e9d419570e6",
+  "homepage": "https://github.com/xunyijia/xunyijia-component#readme",
   "keywords": [
-      "xunyijia"
-  ]
+    "xunyijia"
+  ],
+  "main": "utils.js",
+  "maintainers": [
+    {
+      "name": "laozhao",
+      "email": "844657534@qq.com"
+    }
+  ],
+  "name": "xunyijia-components",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xunyijia/xunyijia-component.git"
+  },
+  "scripts": {},
+  "version": "0.0.2"
 }

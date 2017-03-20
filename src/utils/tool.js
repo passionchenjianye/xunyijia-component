@@ -18,13 +18,13 @@ export function obj2query(obj) {
 export function changeState(event, msg) {
   let status = '';
   switch (event) {
-  case 'begin':
-    status = msg || '保存中';
-    break;
-  case 'fail':
-    status = msg;
-    break;
-  default:
+    case 'begin':
+      status = msg || '保存中';
+      break;
+    case 'fail':
+      status = msg;
+      break;
+    default:
   }
   this.setState({
     saveState: status
@@ -54,38 +54,39 @@ const utils = {};
 utils.DATE_FORMAT_SHOW = "yyyy-mm-dd";
 utils.REGEXP_DATE = new RegExp(/(yyyy|mm|dd|hh|mi|ss|ms)/gi);
 
-utils.format = function(format) {
+utils.format = function (format) {
   if (!format) {
     format = utils.DATE_FORMAT;
   }
-  return format.replace(utils.REGEXP_DATE, function(str) {
+  return format.replace(utils.REGEXP_DATE, function (str) {
     switch (str.toLowerCase()) {
-    case 'yyyy':
-      return this.getFullYear();
-    case 'mm':
-      return utils.leftPadZero.call((this.getMonth() + 1).toString(), 2);
-    case 'dd':
-      return utils.leftPadZero.call((this.getDate()).toString(), 2);
-    case 'hh':
-      return utils.leftPadZero.call((this.getHours()).toString(), 2);
-    case 'mi':
-      return utils.leftPadZero.call((this.getMinutes()).toString(), 2);
-    case 'ss':
-      return utils.leftPadZero.call((this.getSeconds()).toString(), 2);
-    case 'ms':
-      return utils.leftPadZero.call((this.getMilliseconds()).toString(), 2);
-    default:
+      case 'yyyy':
+        return this.getFullYear();
+      case 'mm':
+        return utils.leftPadZero.call((this.getMonth() + 1).toString(), 2);
+      case 'dd':
+        return utils.leftPadZero.call((this.getDate()).toString(), 2);
+      case 'hh':
+        return utils.leftPadZero.call((this.getHours()).toString(), 2);
+      case 'mi':
+        return utils.leftPadZero.call((this.getMinutes()).toString(), 2);
+      case 'ss':
+        return utils.leftPadZero.call((this.getSeconds()).toString(), 2);
+      case 'ms':
+        return utils.leftPadZero.call((this.getMilliseconds()).toString(), 2);
+      default:
+        return null;
     }
   }.bind(this));
 };
-utils.formatDateObject = function(date, format) {
+utils.formatDateObject = function (date, format) {
   if (date.constructor.name !== 'Date') {
     console.error('日期必须为date对象');
     return undefined;
   }
   return utils.format.call(date, format);
 };
-utils.leftPadZero = function(width) {
+utils.leftPadZero = function (width) {
   const pad = width - this.length;
   if (pad > 0) {
     return (utils.times.call("0", pad) + this);
@@ -93,7 +94,7 @@ utils.leftPadZero = function(width) {
     return this;
   }
 };
-utils.times = function(times) {
+utils.times = function (times) {
   if (times < 1) {
     times = 1;
   }
@@ -104,7 +105,7 @@ utils.times = function(times) {
   }
   return ret;
 };
-utils.formatDate = function(data, inFormat, outFormat) {
+utils.formatDate = function (data, inFormat, outFormat) {
   // 如果data为空,则返回空字符串
   // Added by zhuding@yuchengtech.com o 2011-03-15
   if (!data) {
@@ -145,31 +146,31 @@ utils.parseDate = function(dateString, format) {
   for (let index = 0; index < matchArray.length; index++) {
     const postion = format.indexOf(matchArray[index]);
     switch (matchArray[index]) {
-    case "yyyy": {
-      year = parseInt(dateString.substr(postion, 4), 10);
-      break;
-    }
-    case "mm": {
-      month = parseInt(dateString.substr(postion, 2), 10) - 1;
-      break;
-    }
-    case "dd": {
-      day = parseInt(dateString.substr(postion, 2), 10);
-      break;
-    }
-    case "hh": {
-      hour = parseInt(dateString.substr(postion, 2), 10);
-      break;
-    }
-    case "mi": {
-      minute = parseInt(dateString.substr(postion, 2), 10);
-      break;
-    }
-    case "ss": {
-      second = parseInt(dateString.substr(postion, 2), 10);
-      break;
-    }
-    default:
+      case "yyyy": {
+        year = parseInt(dateString.substr(postion, 4), 10);
+        break;
+      }
+      case "mm": {
+        month = parseInt(dateString.substr(postion, 2), 10) - 1;
+        break;
+      }
+      case "dd": {
+        day = parseInt(dateString.substr(postion, 2), 10);
+        break;
+      }
+      case "hh": {
+        hour = parseInt(dateString.substr(postion, 2), 10);
+        break;
+      }
+      case "mi": {
+        minute = parseInt(dateString.substr(postion, 2), 10);
+        break;
+      }
+      case "ss": {
+        second = parseInt(dateString.substr(postion, 2), 10);
+        break;
+      }
+      default:
     }
   }
 
@@ -200,19 +201,19 @@ utils.isDate = function(dateString, format) {
   for (let index = 0; index < matchArray.length; index++) {
     const postion = format.indexOf(matchArray[index]);
     switch (matchArray[index]) {
-    case "yyyy": {
-      year = parseInt(dateString.substr(postion, 4), 10);
-      break;
-    }
-    case "mm": {
-      month = parseInt(dateString.substr(postion, 2), 10) - 1;
-      break;
-    }
-    case "dd": {
-      day = parseInt(dateString.substr(postion, 2), 10);
-      break;
-    }
-    default:
+      case "yyyy": {
+        year = parseInt(dateString.substr(postion, 4), 10);
+        break;
+      }
+      case "mm": {
+        month = parseInt(dateString.substr(postion, 2), 10) - 1;
+        break;
+      }
+      case "dd": {
+        day = parseInt(dateString.substr(postion, 2), 10);
+        break;
+      }
+      default:
     }
   }
   const dateTest = new Date(year, month, day);
@@ -262,4 +263,34 @@ export function getYearList(long = 6) {
     defaultYear,
     yearList: arr
   };
+}
+/*
+  由于object是按照引用传递，一般的赋值复制只是复制了引用，
+  会出现修改修改后者的时候也影响到前者的值，例如
+  var a = {b: {c: 1}}
+  var b = deptCopy(a);
+  b.b.c =2;
+  这时候 a和b都为{b: {c: 2}}
+  这个深复制方法使用如下：
+  var a = {b: {c: 1}}
+  var b = deptCopy(a);
+  b.b.c =2;
+  这时候a不变，b为{b: {c: 2}}
+  这样b的修改不会改动到a里面的值
+ */
+export function deptCopy(data) {
+  let rd;
+  const cn = data.constructor.name;
+  if (cn === 'Array') {
+    rd = data.map(item => deptCopy(item));
+  } else if(cn === 'Object') {
+    const temp = {};
+    Object.keys(data).forEach(key => {
+      temp[key] = deptCopy(data[key])
+    })
+    rd = temp;
+  } else {
+    rd = data;
+  }
+  return rd;
 }

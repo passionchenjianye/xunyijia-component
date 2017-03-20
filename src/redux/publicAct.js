@@ -88,6 +88,7 @@ function sendReq(path, method, body, rest, succ, fail, beginType, succType, fail
   return (dispatch, req) => {
     dispatch({
       type: beginType,
+      ...rest,
     });
     const reqParams = {
       url: path,
@@ -108,6 +109,7 @@ function sendReq(path, method, body, rest, succ, fail, beginType, succType, fail
       dispatch({
         type: failType,
         err,
+        ...rest,
       });
       fail(err);
     });

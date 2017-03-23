@@ -294,3 +294,8 @@ export function deptCopy(data) {
   }
   return rd;
 }
+
+export function ones(arr) {
+  var temp = arr.filter(item => item);
+  return temp.length === 1
+}

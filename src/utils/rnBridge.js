@@ -8,38 +8,42 @@ export function getData(data) {
         const rtObj = JSON.parse(rtData);
         const rtType = rtObj.type;
         if (type === rtType) {
-          document.removeEventListener('message', fn);
+          document && document.removeEventListener('message', fn);
           timeout && clearTimeout(timeout);
           resolve(rtObj.data);
         }
       };
       timeout = setTimeout(()=>{
-        document.removeEventListener('message', fn);
+        document && document.removeEventListener('message', fn);
         reject('超时！');
       }, 2000);
-      document.addEventListener('message', fn);
-      window.postMessage(postData);
+      document && document.addEventListener('message', fn);
+      window && window.postMessage && window.postMessage(postData);
     });
   }
   export function postData(data) {
     const postData = JSON.stringify(data);
-    window.postMessage(postData);
+    window && window.postMessage && window.postMessage(postData);
   }
   export function listenData(data) {
     const obj = {};
+    const sendObj = JSON.parse(data);
+    const sendType = sendObj.type;
     obj.begin = function(cb) {
       obj.fn = (event) => {
         const eventData = event.data;
         const rtObj = JSON.parse(eventData);
         const rtType = rtObj.type;
         const rtData = rtObj.data;
-        cb(rtData);
+        if (rtType === sendType) {
+            cb(rtData);
+        }
       };
-      document.addEventListener('message', obj.fn);
-      window.postMessage(JSON.stringify(data));
+      document && document.addEventListener('message', obj.fn);
+      window && window.postMessage && window.postMessage(data);
     };
     obj.end = function() {
-      document.removeEventListener('message', obj.fn);
+      document && document.removeEventListener('message', obj.fn);
     };
     return obj;
   }

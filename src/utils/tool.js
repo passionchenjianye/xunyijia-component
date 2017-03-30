@@ -299,3 +299,14 @@ export function ones(arr) {
   var temp = arr.filter(item => item);
   return temp.length === 1
 }
+
+export function getOffset(ele) {
+  let top = ele.offsetTop;
+  let left = ele.offsetLeft;
+  if (ele.offsetParent) {
+    const parentOffset = getOffset(ele.offsetParent);
+    top += parentOffset.top;
+    left += parentOffset.left;
+  }
+  return {top, left};
+}

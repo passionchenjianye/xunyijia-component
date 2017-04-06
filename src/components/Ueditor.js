@@ -12,7 +12,7 @@ require('../../static/ueditor/themes/default/css/ueditor.css');
   }
   <Ueditor ref={(ref)=>{this.ue = ref;}}/>
   <button style={{'zIndex': 1000, color: 'red'}} onClick={this.checkAndSubmit.bind(this)}>Submit</button>
-  
+
  */
 const UEditor = React.createClass({
   displayName: 'UEditor',
@@ -107,6 +107,12 @@ const UEditor = React.createClass({
         self.initEditor();
       }
     });
+  },
+  ready: function(fn) {
+    if (this.editor) {
+      this.editor.ready(fn);
+    }
+    return '';
   },
   // 获取编辑器的内容
   getContent: function() {

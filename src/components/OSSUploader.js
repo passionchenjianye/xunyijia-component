@@ -119,7 +119,11 @@ export default class Avatar extends Component {
     this.policy.key += `${uuidV4()}/${file.name}`;
     file.url = `${this.state.host}/${this.policy.key}`;
   }
-  onChange({fileList, event}) {
+  onChange({file, fileList, event}) {
+    if (file.status === 'error') {
+      message.error('上传失败，请重新上传！');
+      return;
+    }
     const {onChange, accept} = this.props;
     fileList = fileList.slice(-1);
     this.setState({ fileList });

@@ -30,6 +30,19 @@ export default class CategorySelector extends Component {
     const fourth = initialObj[3] || undefined;
     this.state = {first, second, third, fourth};
   }
+  componentWillReceiveProps(nextProps) {
+    const {initialObj} = nextProps;
+    if (!initialObj) {
+      return;
+    }
+    if (this.props.initialObj !== nextProps.initialObj) {
+      const first = initialObj[0] || undefined;
+      const second = initialObj[1] || undefined;
+      const third = initialObj[2] || undefined;
+      const fourth = initialObj[3] || undefined;
+      this.state = {first, second, third, fourth};
+    }
+  }
   // 选择条目变化触发
   onChange(first, second, third, fourth) {
     const state = { first, second, third, fourth };

@@ -20,6 +20,7 @@ export default function() {
   const ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
   const ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
   const iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+  const windowPhone = ua.match(/(Windows\sPhone)\s([\d_]+)/);
   platform.ios = platform.android = platform.iphone = platform.ipad = false;
   // Android
   if (android) {
@@ -52,7 +53,7 @@ export default function() {
   }
   // 本地开发 platform.os = web
   // platform.os = "web";
-  if (platform.iphone || platform.android) {
+  if (platform.iphone || platform.android || windowPhone || ipad) {
     platform.phone = true;
   }
   return platform.phone;

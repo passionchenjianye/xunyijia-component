@@ -310,3 +310,12 @@ export function getOffset(ele) {
   }
   return {top, left};
 }
+
+
+// 限制input输入长度
+// onInput={maxLengthHandler.bind(this, 10)}
+export function maxLengthHandler(len, event) {
+  if (event.target.value.length > len) {
+    event.target.value = event.target.value.slice(0, len);
+  }
+}

@@ -68,8 +68,9 @@ export function getData(data) {
   }
   export function listenData(data) {
     const obj = {};
-    const sendObj = JSON.parse(data);
-    const sendType = sendObj.type;
+    const sendType = data.type;
+    data = JSON.stringify(data);
+    const
     obj.begin = function(cb) {
       obj.fn = (event) => {
         const eventData = event.data;

@@ -70,7 +70,6 @@ export function getData(data) {
     const obj = {};
     const sendType = data.type;
     data = JSON.stringify(data);
-    const
     obj.begin = function(cb) {
       obj.fn = (event) => {
         const eventData = event.data;

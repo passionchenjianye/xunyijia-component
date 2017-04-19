@@ -319,3 +319,7 @@ export function maxLengthHandler(len, event) {
     event.target.value = event.target.value.slice(0, len);
   }
 }
+
+export function passwordInputFocus(event) {
+  event.target.type = 'password';
+}

@@ -1,22 +1,56 @@
-export function obj2query(obj) {
-  if (typeof obj !== "object") {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isDate = exports.parseDate = exports.formatDate = exports.formatDateString = undefined;
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+exports.obj2query = obj2query;
+exports.changeState = changeState;
+exports.changeState2Fail = changeState2Fail;
+exports.changeState2Begin = changeState2Begin;
+exports.changeState2Succ = changeState2Succ;
+exports.getQuery = getQuery;
+exports.getYearList = getYearList;
+exports.deptCopy = deptCopy;
+exports.ones = ones;
+exports.getOffset = getOffset;
+exports.maxLengthHandler = maxLengthHandler;
+exports.passwordInputFocus = passwordInputFocus;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function obj2query(obj) {
+  if ((typeof obj === 'undefined' ? 'undefined' : (0, _typeof3.default)(obj)) !== "object") {
     return '';
   }
-  let query = '';
-  Object.keys(obj).forEach((item) => {
-    const value = obj[item];
-    if (value && typeof value !== 'object') {
-      query += `${item}=${value}&`;
-    } else if (value && typeof value === 'object') {
-      query += `${item}=${JSON.stringify(value)}&`;
+  var query = '';
+  (0, _keys2.default)(obj).forEach(function (item) {
+    var value = obj[item];
+    if (value && (typeof value === 'undefined' ? 'undefined' : (0, _typeof3.default)(value)) !== 'object') {
+      query += item + '=' + value + '&';
+    } else if (value && (typeof value === 'undefined' ? 'undefined' : (0, _typeof3.default)(value)) === 'object') {
+      query += item + '=' + (0, _stringify2.default)(value) + '&';
     }
   });
   return query.slice(0, -1);
 }
 
 // 组件中定义state = {saveState: ''}，再调用对于方法 changeState2Begin.call(this, '登陆中');
-export function changeState(event, msg) {
-  let status = '';
+function changeState(event, msg) {
+  var status = '';
   switch (event) {
     case 'begin':
       status = msg || '保存中';
@@ -30,27 +64,27 @@ export function changeState(event, msg) {
     saveState: status
   });
 }
-export function changeState2Fail(err) {
+function changeState2Fail(err) {
   changeState.call(this, 'fail', err);
 }
-export function changeState2Begin(msg) {
+function changeState2Begin(msg) {
   changeState.call(this, 'begin', msg);
 }
-export function changeState2Succ() {
+function changeState2Succ() {
   changeState.call(this, 'succ');
 }
-export function getQuery(location) {
+function getQuery(location) {
   if (!location && (!this || !this.props || !this.props.location)) {
     console.error('必须传入参数才能调用');
     return undefined;
   } else if (!location) {
     location = this.props.location;
   }
-  const query = location.state ? location.state : {};
+  var query = location.state ? location.state : {};
   return query;
 }
 // 格式化日期
-const utils = {};
+var utils = {};
 utils.DATE_FORMAT_SHOW = "yyyy-mm-dd";
 utils.REGEXP_DATE = new RegExp(/(yyyy|mm|dd|hh|mi|ss|ms)/gi);
 
@@ -65,15 +99,15 @@ utils.format = function (format) {
       case 'mm':
         return utils.leftPadZero.call((this.getMonth() + 1).toString(), 2);
       case 'dd':
-        return utils.leftPadZero.call((this.getDate()).toString(), 2);
+        return utils.leftPadZero.call(this.getDate().toString(), 2);
       case 'hh':
-        return utils.leftPadZero.call((this.getHours()).toString(), 2);
+        return utils.leftPadZero.call(this.getHours().toString(), 2);
       case 'mi':
-        return utils.leftPadZero.call((this.getMinutes()).toString(), 2);
+        return utils.leftPadZero.call(this.getMinutes().toString(), 2);
       case 'ss':
-        return utils.leftPadZero.call((this.getSeconds()).toString(), 2);
+        return utils.leftPadZero.call(this.getSeconds().toString(), 2);
       case 'ms':
-        return utils.leftPadZero.call((this.getMilliseconds()).toString(), 2);
+        return utils.leftPadZero.call(this.getMilliseconds().toString(), 2);
       default:
         return null;
     }
@@ -87,9 +121,9 @@ utils.formatDateObject = function (date, format) {
   return utils.format.call(date, format);
 };
 utils.leftPadZero = function (width) {
-  const pad = width - this.length;
+  var pad = width - this.length;
   if (pad > 0) {
-    return (utils.times.call("0", pad) + this);
+    return utils.times.call("0", pad) + this;
   } else {
     return this;
   }
@@ -98,7 +132,7 @@ utils.times = function (times) {
   if (times < 1) {
     times = 1;
   }
-  let ret = "";
+  var ret = "";
   while (times) {
     ret += this;
     times--;
@@ -111,7 +145,7 @@ utils.formatDate = function (data, inFormat, outFormat) {
   if (!data) {
     return "";
   }
-  const parsedDate = utils.parseDate(data, inFormat || utils.DATE_FORMAT);
+  var parsedDate = utils.parseDate(data, inFormat || utils.DATE_FORMAT);
   // 如果输入的data不合法,则返回空字符串
   // Added by zhuding@yuchengtech.com o 2011-03-15
   if (parsedDate === null) {
@@ -124,13 +158,13 @@ utils.formatDate = function (data, inFormat, outFormat) {
   }
 };
 
-utils.parseDate = function(dateString, format) {
-  let year = 2000;
-  let month = 0;
-  let day = 1;
-  let hour = 0;
-  let minute = 0;
-  let second = 0;
+utils.parseDate = function (dateString, format) {
+  var year = 2000;
+  var month = 0;
+  var day = 1;
+  var hour = 0;
+  var minute = 0;
+  var second = 0;
   format = format || utils.DATE_FORMAT_SHOW;
 
   if (dateString.length !== format.length) {
@@ -142,39 +176,45 @@ utils.parseDate = function(dateString, format) {
       return null;
     }
   }
-  const matchArray = format.match(utils.REGEXP_DATE);
-  for (let index = 0; index < matchArray.length; index++) {
-    const postion = format.indexOf(matchArray[index]);
+  var matchArray = format.match(utils.REGEXP_DATE);
+  for (var index = 0; index < matchArray.length; index++) {
+    var postion = format.indexOf(matchArray[index]);
     switch (matchArray[index]) {
-      case "yyyy": {
-        year = parseInt(dateString.substr(postion, 4), 10);
-        break;
-      }
-      case "mm": {
-        month = parseInt(dateString.substr(postion, 2), 10) - 1;
-        break;
-      }
-      case "dd": {
-        day = parseInt(dateString.substr(postion, 2), 10);
-        break;
-      }
-      case "hh": {
-        hour = parseInt(dateString.substr(postion, 2), 10);
-        break;
-      }
-      case "mi": {
-        minute = parseInt(dateString.substr(postion, 2), 10);
-        break;
-      }
-      case "ss": {
-        second = parseInt(dateString.substr(postion, 2), 10);
-        break;
-      }
+      case "yyyy":
+        {
+          year = parseInt(dateString.substr(postion, 4), 10);
+          break;
+        }
+      case "mm":
+        {
+          month = parseInt(dateString.substr(postion, 2), 10) - 1;
+          break;
+        }
+      case "dd":
+        {
+          day = parseInt(dateString.substr(postion, 2), 10);
+          break;
+        }
+      case "hh":
+        {
+          hour = parseInt(dateString.substr(postion, 2), 10);
+          break;
+        }
+      case "mi":
+        {
+          minute = parseInt(dateString.substr(postion, 2), 10);
+          break;
+        }
+      case "ss":
+        {
+          second = parseInt(dateString.substr(postion, 2), 10);
+          break;
+        }
       default:
     }
   }
 
-  const result = new Date(year, month, day, hour, minute, second);
+  var result = new Date(year, month, day, hour, minute, second);
 
   // 加上result为空的判断,为了解决传入的字符串格式不正确的问题
   // IE下用isNaN来判断，其它浏览器通过Invalid Date来判断
@@ -186,66 +226,71 @@ utils.parseDate = function(dateString, format) {
   return result;
 };
 
-utils.isDate = function(dateString, format) {
-  let year;
-  let month;
-  let day;
+utils.isDate = function (dateString, format) {
+  var year = void 0;
+  var month = void 0;
+  var day = void 0;
   format = format || utils.DATE_FORMAT_SHOW;
 
   if (dateString.length !== format.length) {
-    console.log( "日期和日期对应的格式不对或者长度不对！");
+    console.log("日期和日期对应的格式不对或者长度不对！");
     return false;
   }
 
-  const matchArray = format.match(utils.REGEXP_DATE);
-  for (let index = 0; index < matchArray.length; index++) {
-    const postion = format.indexOf(matchArray[index]);
+  var matchArray = format.match(utils.REGEXP_DATE);
+  for (var index = 0; index < matchArray.length; index++) {
+    var postion = format.indexOf(matchArray[index]);
     switch (matchArray[index]) {
-      case "yyyy": {
-        year = parseInt(dateString.substr(postion, 4), 10);
-        break;
-      }
-      case "mm": {
-        month = parseInt(dateString.substr(postion, 2), 10) - 1;
-        break;
-      }
-      case "dd": {
-        day = parseInt(dateString.substr(postion, 2), 10);
-        break;
-      }
+      case "yyyy":
+        {
+          year = parseInt(dateString.substr(postion, 4), 10);
+          break;
+        }
+      case "mm":
+        {
+          month = parseInt(dateString.substr(postion, 2), 10) - 1;
+          break;
+        }
+      case "dd":
+        {
+          day = parseInt(dateString.substr(postion, 2), 10);
+          break;
+        }
       default:
     }
   }
-  const dateTest = new Date(year, month, day);
-  const testYear = dateTest.getFullYear();
-  const testMonth = dateTest.getMonth();
-  const testDay = dateTest.getDate();
-  return (year === testYear && month === testMonth && day === testDay);
+  var dateTest = new Date(year, month, day);
+  var testYear = dateTest.getFullYear();
+  var testMonth = dateTest.getMonth();
+  var testDay = dateTest.getDate();
+  return year === testYear && month === testMonth && day === testDay;
 };
 // 年|月|天|时|分|秒|毫秒：yyyy|mm|dd|hh|mi|ss|ms
 // params1: 日期字符串， params2: 输入的日期格式，params3: 期待输出的日期格式。
 // 输出特定格式的日期字符串
 // formatDateString('20110111', 'yyyymmdd', 'yyyy-mm-dd')
-export const formatDateString = utils.formatDate;
+var formatDateString = exports.formatDateString = utils.formatDate;
 // params1: Date对象， params2: 期待输出的日期格式
 // 输出特定格式的日期字符串
 // formatDate(new Date(), 'yyyy=mm=dd')
-export const formatDate = utils.formatDateObject;
+var formatDate = exports.formatDate = utils.formatDateObject;
 // params1: 日期字符串， params2: 输入的日期格式。
 // 输出一个Date时间对象
 // parseDate('20110101', 'yyyymmdd')
-export const parseDate = utils.parseDate;
+var parseDate = exports.parseDate = utils.parseDate;
 // params1: 日期字符串，params2:输入的日期字符串格式
 // 输出一个boolean
 // isDate('20110101', 'yyyymmdd')
-export const isDate = utils.isDate;
+var isDate = exports.isDate = utils.isDate;
 
-export function getYearList(long = 6) {
-  const date = new Date();
-  const month = date.getMonth() + 1;
-  const nowYear = date.getFullYear();
-  let firstYear;
-  let afterYear;
+function getYearList() {
+  var long = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 6;
+
+  var date = new Date();
+  var month = date.getMonth() + 1;
+  var nowYear = date.getFullYear();
+  var firstYear = void 0;
+  var afterYear = void 0;
   if (month < 8) {
     firstYear = Number(nowYear) - 1;
     afterYear = nowYear;
@@ -253,14 +298,14 @@ export function getYearList(long = 6) {
     firstYear = nowYear;
     afterYear = Number(nowYear) + 1;
   }
-  const defaultYear = `${firstYear}-${afterYear}`;
-  const arr = [];
-  for (let index = 0 - long; index < long; index++ ) {
-    let arrTemp = [firstYear + index, afterYear + index];
-    arr.push(`${arrTemp[0]}-${arrTemp[1]}`);
+  var defaultYear = firstYear + '-' + afterYear;
+  var arr = [];
+  for (var index = 0 - long; index < long; index++) {
+    var arrTemp = [firstYear + index, afterYear + index];
+    arr.push(arrTemp[0] + '-' + arrTemp[1]);
   }
   return {
-    defaultYear,
+    defaultYear: defaultYear,
     yearList: arr
   };
 }
@@ -278,16 +323,18 @@ export function getYearList(long = 6) {
   这时候a不变，b为{b: {c: 2}}
   这样b的修改不会改动到a里面的值
  */
-export function deptCopy(data) {
-  let rd;
-  const cn = data.constructor.name;
+function deptCopy(data) {
+  var rd = void 0;
+  var cn = data.constructor.name;
   if (cn === 'Array') {
-    rd = data.map(item => deptCopy(item));
-  } else if(cn === 'Object') {
-    const temp = {};
-    Object.keys(data).forEach(key => {
-      temp[key] = deptCopy(data[key])
-    })
+    rd = data.map(function (item) {
+      return deptCopy(item);
+    });
+  } else if (cn === 'Object') {
+    var temp = {};
+    (0, _keys2.default)(data).forEach(function (key) {
+      temp[key] = deptCopy(data[key]);
+    });
     rd = temp;
   } else {
     rd = data;
@@ -295,31 +342,32 @@ export function deptCopy(data) {
   return rd;
 }
 
-export function ones(arr) {
-  var temp = arr.filter(item => item);
-  return temp.length === 1
+function ones(arr) {
+  var temp = arr.filter(function (item) {
+    return item;
+  });
+  return temp.length === 1;
 }
 
-export function getOffset(ele) {
-  let top = ele.offsetTop;
-  let left = ele.offsetLeft;
+function getOffset(ele) {
+  var top = ele.offsetTop;
+  var left = ele.offsetLeft;
   if (ele.offsetParent) {
-    const parentOffset = getOffset(ele.offsetParent);
+    var parentOffset = getOffset(ele.offsetParent);
     top += parentOffset.top;
     left += parentOffset.left;
   }
-  return {top, left};
+  return { top: top, left: left };
 }
-
 
 // 限制input输入长度
 // onInput={maxLengthHandler.bind(this, 10)}
-export function maxLengthHandler(len, event) {
+function maxLengthHandler(len, event) {
   if (event.target.value.length > len) {
     event.target.value = event.target.value.slice(0, len);
   }
 }
 
-export function passwordInputFocus(event) {
+function passwordInputFocus(event) {
   event.target.type = 'password';
 }

@@ -1,3 +1,23 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+exports.getData = getData;
+exports.postData = postData;
+exports.listenData = listenData;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /*
   import {getData, postData, listenData} from 'xunyijia-components/src/utils/rnBridge';
   getData({type: 'getAppVersion'}).then(data=>{});
@@ -39,52 +59,52 @@
  }
  */
 
-export function getData(data) {
-    const type = data.type;
-    const postData = JSON.stringify(data);
-    return new Promise((resolve, reject) => {
-      let timeout;
-      const fn = (event) => {
-        const rtData = event.data;
-        const rtObj = JSON.parse(rtData);
-        const rtType = rtObj.type;
-        if (type === rtType) {
-          document && document.removeEventListener('message', fn);
-          timeout && clearTimeout(timeout);
-          resolve(rtObj.data);
-        }
-      };
-      timeout = setTimeout(()=>{
+function getData(data) {
+  var type = data.type;
+  var postData = (0, _stringify2.default)(data);
+  return new _promise2.default(function (resolve, reject) {
+    var timeout = void 0;
+    var fn = function fn(event) {
+      var rtData = event.data;
+      var rtObj = JSON.parse(rtData);
+      var rtType = rtObj.type;
+      if (type === rtType) {
         document && document.removeEventListener('message', fn);
-        reject('超时！');
-      }, 15000);
-      document && document.addEventListener('message', fn);
-      window && window.postMessage && window.postMessage(postData);
-    });
-  }
-  export function postData(data) {
-    const postData = JSON.stringify(data);
+        timeout && clearTimeout(timeout);
+        resolve(rtObj.data);
+      }
+    };
+    timeout = setTimeout(function () {
+      document && document.removeEventListener('message', fn);
+      reject('超时！');
+    }, 15000);
+    document && document.addEventListener('message', fn);
     window && window.postMessage && window.postMessage(postData);
-  }
-  export function listenData(data) {
-    const obj = {};
-    const sendType = data.type;
-    data = JSON.stringify(data);
-    obj.begin = function(cb) {
-      obj.fn = (event) => {
-        const eventData = event.data;
-        const rtObj = JSON.parse(eventData);
-        const rtType = rtObj.type;
-        const rtData = rtObj.data;
-        if (rtType === sendType) {
-            cb(rtData);
-        }
-      };
-      document && document.addEventListener('message', obj.fn);
-      window && window.postMessage && window.postMessage(data);
+  });
+}
+function postData(data) {
+  var postData = (0, _stringify2.default)(data);
+  window && window.postMessage && window.postMessage(postData);
+}
+function listenData(data) {
+  var obj = {};
+  var sendType = data.type;
+  data = (0, _stringify2.default)(data);
+  obj.begin = function (cb) {
+    obj.fn = function (event) {
+      var eventData = event.data;
+      var rtObj = JSON.parse(eventData);
+      var rtType = rtObj.type;
+      var rtData = rtObj.data;
+      if (rtType === sendType) {
+        cb(rtData);
+      }
     };
-    obj.end = function() {
-      document && document.removeEventListener('message', obj.fn);
-    };
-    return obj;
-  }
+    document && document.addEventListener('message', obj.fn);
+    window && window.postMessage && window.postMessage(data);
+  };
+  obj.end = function () {
+    document && document.removeEventListener('message', obj.fn);
+  };
+  return obj;
+}

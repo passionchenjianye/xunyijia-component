@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * echarts默认配置项
  *
@@ -5,7 +7,7 @@
  * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
  *
  */
-define(function() {
+define(function () {
     // 请原谅我这样写，这显然可以直接返回个对象，但那样的话outline就显示不出来了~~
     var config = {
         // 图表类型
@@ -50,28 +52,7 @@ define(function() {
         backgroundColor: 'rgba(0,0,0,0)',
 
         // 默认色板
-        color: [
-            '#ff7f50',
-            '#87cefa',
-            '#da70d6',
-            '#32cd32',
-            '#6495ed',
-            '#ff69b4',
-            '#ba55d3',
-            '#cd5c5c',
-            '#ffa500',
-            '#40e0d0',
-            '#1e90ff',
-            '#ff6347',
-            '#7b68ee',
-            '#00fa9a',
-            '#ffd700',
-            '#6699FF',
-            '#ff6666',
-            '#3cb371',
-            '#b8860b',
-            '#30e0e0'
-        ],
+        color: ['#ff7f50', '#87cefa', '#da70d6', '#32cd32', '#6495ed', '#ff69b4', '#ba55d3', '#cd5c5c', '#ffa500', '#40e0d0', '#1e90ff', '#ff6347', '#7b68ee', '#00fa9a', '#ffd700', '#6699FF', '#ff6666', '#3cb371', '#b8860b', '#30e0e0'],
 
         markPoint: {
             clickable: true,
@@ -119,13 +100,9 @@ define(function() {
         markLine: {
             clickable: true,
             // 标线起始和结束的symbol介绍类型，如果都一样，可以直接传string
-            symbol: [
-                'circle', 'arrow'
-            ],
+            symbol: ['circle', 'arrow'],
             // 标线起始和结束的symbol大小，半宽（半径）参数，当图形为方向或菱形则总宽度为symbolSize * 2
-            symbolSize: [
-                2, 4
-            ],
+            symbolSize: [2, 4],
             // 标线起始和结束的symbol旋转控制
             //symbolRotate: null,
             //smooth: false,
@@ -228,16 +205,7 @@ define(function() {
         EFFECT_ZLEVEL: 10, // 特效动画zlevel
         effectBlendAlpha: 0.95,
         // 主题，默认标志图形类型列表
-        symbolList: [
-            'circle',
-            'rectangle',
-            'triangle',
-            'diamond',
-            'emptyCircle',
-            'emptyRectangle',
-            'emptyTriangle',
-            'emptyDiamond'
-        ],
+        symbolList: ['circle', 'rectangle', 'triangle', 'diamond', 'emptyCircle', 'emptyRectangle', 'emptyTriangle', 'emptyDiamond'],
         loadingEffect: 'spin',
         loadingText: '数据读取中...',
         noDataEffect: 'bubble',

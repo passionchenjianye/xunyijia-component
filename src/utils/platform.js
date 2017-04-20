@@ -1,5 +1,11 @@
-export default function() {
-  const platform = {};
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var platform = {};
   platform.os = "web";
 
   platform.ios = false;
@@ -15,12 +21,12 @@ export default function() {
   platform.osVersion = "";
 
   // 获取设备信息
-  const ua = navigator.userAgent;
-  const android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
-  const ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
-  const ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
-  const iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
-  const windowPhone = ua.match(/(Windows\sPhone)\s([\d_]+)/);
+  var ua = navigator.userAgent;
+  var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
+  var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+  var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
+  var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+  var windowPhone = ua.match(/(Windows\sPhone)\s([\d_]+)/);
   platform.ios = platform.android = platform.iphone = platform.ipad = false;
   // Android
   if (android) {
@@ -57,4 +63,6 @@ export default function() {
     platform.phone = true;
   }
   return platform.phone;
-}
+};
+
+module.exports = exports['default'];

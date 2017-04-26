@@ -325,7 +325,8 @@ function getYearList() {
  */
 function deptCopy(data) {
   var rd = void 0;
-  var cn = data.constructor.name;
+  var cn = void 0;
+  data && data.constructor && (cn = data.constructor.name);
   if (cn === 'Array') {
     rd = data.map(function (item) {
       return deptCopy(item);

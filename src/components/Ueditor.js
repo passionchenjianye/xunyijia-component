@@ -1,11 +1,5 @@
 'use strict';
 
-var _css = require('antd/lib/icon/style/css');
-
-var _icon = require('antd/lib/icon');
-
-var _icon2 = _interopRequireDefault(_icon);
-
 var _redboxReact2 = require('redbox-react');
 
 var _redboxReact3 = _interopRequireDefault(_redboxReact2);
@@ -22,6 +16,8 @@ var _OSSUploader = require('./OSSUploader');
 
 var _OSSUploader2 = _interopRequireDefault(_OSSUploader);
 
+var _antd = require('antd');
+
 var _urls = require('../constants/urls');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33,7 +29,7 @@ var _components = {
 };
 
 var _reactTransformCatchErrors2 = (0, _reactTransformCatchErrors4.default)({
-  filename: 'src/components/Ueditor.js',
+  filename: 'src-code/components/Ueditor.js',
   components: _components,
   locals: [],
   imports: [_react3.default, _redboxReact3.default]
@@ -81,7 +77,7 @@ var UEditor = _wrapComponent('UEditor')(_react3.default.createClass({
           jsx: _react3.default.createElement(
             'span',
             { style: { color: '#4169E1' } },
-            _react3.default.createElement(_icon2.default, { type: 'picture' }),
+            _react3.default.createElement(_antd.Icon, { type: 'picture' }),
             '  \u63D2\u5165\u56FE\u7247'
           )
         })

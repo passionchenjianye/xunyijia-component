@@ -4,30 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _css = require('antd/lib/input/style/css');
-
-var _input = require('antd/lib/input');
-
-var _input2 = _interopRequireDefault(_input);
-
-var _css2 = require('antd/lib/message/style/css');
-
-var _message = require('antd/lib/message');
-
-var _message2 = _interopRequireDefault(_message);
-
-var _css3 = require('antd/lib/select/style/css');
-
-var _select = require('antd/lib/select');
-
-var _select2 = _interopRequireDefault(_select);
-
-var _css4 = require('antd/lib/form/style/css');
-
-var _form = require('antd/lib/form');
-
-var _form2 = _interopRequireDefault(_form);
-
 var _redboxReact2 = require('redbox-react');
 
 var _redboxReact3 = _interopRequireDefault(_redboxReact2);
@@ -39,6 +15,8 @@ var _react3 = _interopRequireDefault(_react2);
 var _reactTransformCatchErrors3 = require('react-transform-catch-errors');
 
 var _reactTransformCatchErrors4 = _interopRequireDefault(_reactTransformCatchErrors3);
+
+var _antd = require('antd');
 
 var _validation = require('utils/validation');
 
@@ -53,7 +31,7 @@ var _components = {
 };
 
 var _reactTransformCatchErrors2 = (0, _reactTransformCatchErrors4.default)({
-  filename: 'src/components/Edit/Edit.js',
+  filename: 'src-code/components/Edit/Edit.js',
   components: _components,
   locals: [],
   imports: [_react3.default, _redboxReact3.default]
@@ -65,11 +43,11 @@ function _wrapComponent(id) {
   };
 }
 
-var FormItem = _form2.default.Item;
-var Option = _select2.default.Option;
+var FormItem = _antd.Form.Item;
+var Option = _antd.Select.Option;
 
 // 封装的添加账号组件
-var AccountAdd = _form2.default.create()(_wrapComponent('_component')(_react3.default.createClass({
+var AccountAdd = _antd.Form.create()(_wrapComponent('_component')(_react3.default.createClass({
   displayName: 'AccountAdd',
   succ: function succ() {
     this.props.succ();
@@ -100,7 +78,7 @@ var AccountAdd = _form2.default.create()(_wrapComponent('_component')(_react3.de
         };
         _this.props.fetchCreateSaveAccount(obj);
       } else {
-        _message2.default.error('请检查输入项！');
+        _antd.message.error('请检查输入项！');
       }
     });
   },
@@ -132,7 +110,7 @@ var AccountAdd = _form2.default.create()(_wrapComponent('_component')(_react3.de
         message: _validation.ACCOUNT_TIP,
         pattern: _validation.ACCOUNT
       }],
-      jsx: _react3.default.createElement(_input2.default, { placeholder: '请填写账号名称...', disabled: isAdd ? false : true })
+      jsx: _react3.default.createElement(_antd.Input, { placeholder: '请填写账号名称...', disabled: isAdd ? false : true })
     }, {
       add: {
         label: '登录密码',
@@ -142,7 +120,7 @@ var AccountAdd = _form2.default.create()(_wrapComponent('_component')(_react3.de
           message: _validation.PASSWORD_TIP,
           pattern: _validation.PASSWORD
         }],
-        jsx: _react3.default.createElement(_input2.default, { placeholder: '请填写登录密码...', type: 'password' })
+        jsx: _react3.default.createElement(_antd.Input, { placeholder: '请填写登录密码...', type: 'password' })
       }
     }, {
       label: '姓名',
@@ -151,7 +129,7 @@ var AccountAdd = _form2.default.create()(_wrapComponent('_component')(_react3.de
         required: true,
         message: '此选项为必填项，请填写！'
       }],
-      jsx: _react3.default.createElement(_input2.default, { placeholder: '\u8BF7\u586B\u5199\u59D3\u540D...' })
+      jsx: _react3.default.createElement(_antd.Input, { placeholder: '\u8BF7\u586B\u5199\u59D3\u540D...' })
     }, {
       label: '角色',
       key: 'role',
@@ -160,7 +138,7 @@ var AccountAdd = _form2.default.create()(_wrapComponent('_component')(_react3.de
         message: '角色为必选项，请选择角色！'
       }],
       jsx: _react3.default.createElement(
-        _select2.default,
+        _antd.Select,
         { placeholder: '\u8BF7\u9009\u62E9\u89D2\u8272...' },
         roleList.map(function (item) {
           return _react3.default.createElement(

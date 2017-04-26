@@ -280,7 +280,8 @@ export function getYearList(long = 6) {
  */
 export function deptCopy(data) {
   let rd;
-  const cn = data.constructor.name;
+  let cn;
+  data && data.constructor && (cn = data.constructor.name);
   if (cn === 'Array') {
     rd = data.map(item => deptCopy(item));
   } else if(cn === 'Object') {

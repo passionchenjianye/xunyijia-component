@@ -32,12 +32,6 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _css = require('antd/lib/select/style/css');
-
-var _select = require('antd/lib/select');
-
-var _select2 = _interopRequireDefault(_select);
-
 var _redboxReact2 = require('redbox-react');
 
 var _redboxReact3 = _interopRequireDefault(_redboxReact2);
@@ -52,6 +46,8 @@ var _reactTransformCatchErrors4 = _interopRequireDefault(_reactTransformCatchErr
 
 var _class, _temp;
 
+var _antd = require('antd');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _components = {
@@ -61,7 +57,7 @@ var _components = {
 };
 
 var _reactTransformCatchErrors2 = (0, _reactTransformCatchErrors4.default)({
-  filename: 'src/components/RegionSelector.js',
+  filename: 'src-code/components/RegionSelector.js',
   components: _components,
   locals: [],
   imports: [_react3.default, _redboxReact3.default]
@@ -73,7 +69,7 @@ function _wrapComponent(id) {
   };
 }
 
-var Option = _select2.default.Option;
+var Option = _antd.Select.Option;
 
 /*
   参考： components/choolaccount/schoolaccount.js
@@ -218,7 +214,7 @@ var RegionSelector = _wrapComponent('RegionSelector')((_temp = _class = function
     key: 'renderProvince',
     value: function renderProvince(province, provinceArr) {
       return [_react3.default.createElement(
-        _select2.default,
+        _antd.Select,
         { key: '0', value: province,
           notFoundContent: '\u6CA1\u6570\u636E', placeholder: '\u8BF7\u9009\u62E9',
           style: { 'width': '20%', display: 'inline-block' },
@@ -243,7 +239,7 @@ var RegionSelector = _wrapComponent('RegionSelector')((_temp = _class = function
     key: 'renderCity',
     value: function renderCity(city, cityArr) {
       return [_react3.default.createElement(
-        _select2.default,
+        _antd.Select,
         { key: '2', value: city,
           notFoundContent: '\u6CA1\u6570\u636E', placeholder: '\u8BF7\u9009\u62E9',
           style: { 'width': '20%', display: 'inline-block', 'marginLeft': '5%' },
@@ -268,7 +264,7 @@ var RegionSelector = _wrapComponent('RegionSelector')((_temp = _class = function
     key: 'renderArea',
     value: function renderArea(area, areaArr) {
       return [_react3.default.createElement(
-        _select2.default,
+        _antd.Select,
         { key: '4', value: area,
           notFoundContent: '\u6CA1\u6570\u636E', placeholder: '\u8BF7\u9009\u62E9',
           style: { 'width': '20%', display: 'inline-block', 'marginLeft': '5%' },

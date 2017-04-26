@@ -22,7 +22,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   import {getData, postData, listenData} from 'xunyijia-components/src/utils/rnBridge';
   getData({type: 'getAppVersion'}).then(data=>{});
   postData({type: 'updateApp', data: appVersion.address});
-  const listen = listenData(sendData);
+  const listen = listenData({type: 'downProgress'});
   listen.begin((data)=>{
     if (data === 100) {
       listen.end();

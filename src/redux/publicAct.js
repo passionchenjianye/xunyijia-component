@@ -197,7 +197,7 @@ function sendReq(path, method, body, rest, succ, fail, beginType, succType, fail
     if (method === 'get') {
       delete reqParams.body;
     }
-    req.request(reqParams).then(function (data) {
+    return req.request(reqParams).then(function (data) {
       dispatch((0, _extends3.default)({
         type: succType,
         data: data

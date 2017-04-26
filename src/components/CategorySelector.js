@@ -24,12 +24,6 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _css = require('antd/lib/select/style/css');
-
-var _select = require('antd/lib/select');
-
-var _select2 = _interopRequireDefault(_select);
-
 var _redboxReact2 = require('redbox-react');
 
 var _redboxReact3 = _interopRequireDefault(_redboxReact2);
@@ -44,6 +38,8 @@ var _reactTransformCatchErrors4 = _interopRequireDefault(_reactTransformCatchErr
 
 var _class, _temp2;
 
+var _antd = require('antd');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _components = {
@@ -53,7 +49,7 @@ var _components = {
 };
 
 var _reactTransformCatchErrors2 = (0, _reactTransformCatchErrors4.default)({
-  filename: 'src/components/CategorySelector.js',
+  filename: 'src-code/components/CategorySelector.js',
   components: _components,
   locals: [],
   imports: [_react3.default, _redboxReact3.default]
@@ -65,7 +61,7 @@ function _wrapComponent(id) {
   };
 }
 
-var Option = _select2.default.Option;
+var Option = _antd.Select.Option;
 
 var CategorySelector = _wrapComponent('CategorySelector')((_temp2 = _class = function (_Component) {
   (0, _inherits3.default)(CategorySelector, _Component);
@@ -181,7 +177,7 @@ var CategorySelector = _wrapComponent('CategorySelector')((_temp2 = _class = fun
     key: 'renderFirst',
     value: function renderFirst(first, firstArr) {
       return _react3.default.createElement(
-        _select2.default,
+        _antd.Select,
         { key: '0', value: first,
           notFoundContent: '\u6CA1\u6570\u636E', placeholder: '\u8BF7\u9009\u62E9',
           style: { 'width': '20%', display: 'inline-block' },
@@ -202,7 +198,7 @@ var CategorySelector = _wrapComponent('CategorySelector')((_temp2 = _class = fun
     key: 'renderSecond',
     value: function renderSecond(second, SecondArr) {
       return _react3.default.createElement(
-        _select2.default,
+        _antd.Select,
         { key: '2', value: second,
           notFoundContent: '\u6CA1\u6570\u636E', placeholder: '\u8BF7\u9009\u62E9',
           style: { 'width': '20%', display: 'inline-block', 'marginLeft': '5%' },
@@ -223,7 +219,7 @@ var CategorySelector = _wrapComponent('CategorySelector')((_temp2 = _class = fun
     key: 'renderThird',
     value: function renderThird(third, thirdArr) {
       return _react3.default.createElement(
-        _select2.default,
+        _antd.Select,
         { key: '4', value: third,
           notFoundContent: '\u6CA1\u6570\u636E', placeholder: '\u8BF7\u9009\u62E9',
           style: { 'width': '20%', display: 'inline-block', 'marginLeft': '5%' },
@@ -244,7 +240,7 @@ var CategorySelector = _wrapComponent('CategorySelector')((_temp2 = _class = fun
     key: 'renderFourth',
     value: function renderFourth(fourth, fourthArr) {
       return _react3.default.createElement(
-        _select2.default,
+        _antd.Select,
         { key: '5', value: fourth,
           notFoundContent: '\u6CA1\u6570\u636E', placeholder: '\u8BF7\u9009\u62E9',
           style: { 'width': '20%', display: 'inline-block', 'marginLeft': '5%' },
